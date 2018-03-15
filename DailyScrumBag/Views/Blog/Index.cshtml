@@ -1,0 +1,31 @@
+﻿@model IEnumerable<DailyScrumBag.Repository.Models.Post>
+@*Erik - 10/9/2017 Depricated - Moved to _ViewStart to allow Ajax partial page rendering*@
+@*@{
+        Layout = "_Layout";
+    }*@
+<h1>Explorer's Blog</h1>
+<p>
+    Below are a few of the latest posts from soime of our explorers.
+</p>
+<p class="pager">
+    @if (ViewBag.HasPreviousPage)
+    {
+        <a class="prev" href="@Url.Action("Index", "Blog", new { page = ViewBag.PreviousPage })">
+            &lt; Previous
+        </a>
+    }
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="next" href="@Url.Action("index", "Blog", new { page = ViewBag.NextPage })">
+            Next &gt;
+        </a>
+
+    }
+</p>
+<div class="blog-posts">
+    @foreach (var post in Model)
+    {
+        @Html.Partial("_Post", post);
+    }
+    <a href="/blog/create" title="Create new post!">Create new post</a>
+</div>

@@ -1,0 +1,51 @@
+﻿@*@addTagHelper "Microsoft.AspNetCore.Mvc.Taghelpers.FormTagHelpers, Microsoft.AspNetCore.Mvc.TagHelpers"*@
+@*Add '*' to include all Taghelpers*@
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model DailyScrumBag.Repository.Models.Post
+@{
+    Layout = "_Layout";
+}
+<h1>Create Blog Post</h1>
+<fieldset>
+    <form asp-action="Create" asp-controller="Blog">
+
+        <div asp-validation-summary="All" class="input-validation-error"></div>
+        @*Erik - 10/6/2017 Updated with custom markup with TagHelpers*@
+        @*@Html.ValidationSummary()*@
+
+        <p>
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" placeholder="Blog post title" />
+            <span asp-validation-for="Title"></span>
+        </p>
+        <p>
+            <label asp-for="Body"></label>
+            <textarea asp-for="Body" class="form-control" placeholder="Blog post content"></textarea>
+            <span asp-validation-for="Body"></span>
+        </p>
+        <p>
+            <button type="submit">Create Post</button>
+        </p>
+    </form>
+    @*Erik - 10/6/2017 Updated with custom markup with TagHelpers*@
+    @*@using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <p>
+                @Html.LabelFor(x => x.Title)
+                @Html.EditorFor(x => x.Title)
+                @Html.ValidationMessageFor(x => x.Title)
+            </p>
+
+            <p>
+                @Html.LabelFor(x => x.Body)
+                @Html.TextAreaFor(x => x.Body)
+                @Html.ValidationMessageFor(x => x.Body)
+            </p>
+
+            <p>
+                <button type="submit">Create Post</button>
+            </p>
+
+        }*@
+</fieldset>
