@@ -7,10 +7,12 @@ using DailyScrumBag.Interfaces;
 using DailyScrumBag.Interfaces.Extensions;
 using DailyScrumBag.Interfaces.Services;
 using DailyScrumBag.Repository.Models;
+using DailyScrumBag.Repository.Repositories;
 using DailyScrumBag.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -32,9 +34,14 @@ namespace DailyScrumBag
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IFormattingServices, FormattingServices>();
-            //TODO: Erik - 3/15/2018 Introduce all DataContexts
-            #region Register DataContexts
-            #endregion
+          
+            services.AddDbContext<DSDBContext>(options =>
+            {
+                var connectionString = _Configuration.GetConnectionString("WebConfiguration:DatabaseSetting:ConnectionString");
+                options.UseSqlServer(connectionString);
+
+            });
+         
             //Erik - 3/15/2018 Can set default value with GetValue(Config:Value, defaultValue);
             services.AddTransient<IFeatureToggles, FeatureToggles>(x => new FeatureToggles()
             {

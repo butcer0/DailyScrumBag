@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DailyScrumBag.Repository.Models
+namespace DailyScrumBag.Repository.Repositories
 {
     public class IdentityDataContext : IdentityDbContext<IdentityUser>
     {
