@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DailyScrumBag.Infrastructure\DailyScrumBag.Infrastructure.csproj" />
     <ProjectReference Include="..\DailyScrumBag.Interfaces\DailyScrumBag.Interfaces.csproj" />
   </ItemGroup>
 
