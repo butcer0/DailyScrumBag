@@ -13,12 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="api\" />
+    <ProjectReference Include="..\DailyScrumBag.Interfaces\DailyScrumBag.Interfaces.csproj" />
+    <ProjectReference Include="..\DailyScrumBag.Repository\DailyScrumBag.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DailyScrumBag.Interfaces\DailyScrumBag.Interfaces.csproj" />
-    <ProjectReference Include="..\DailyScrumBag.Repository\DailyScrumBag.Repository.csproj" />
+    <Content Update="wwwroot\js\site.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

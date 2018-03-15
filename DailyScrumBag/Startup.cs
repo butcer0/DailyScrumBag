@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DailyScrumBag.Extensions;
-using DailyScrumBag.Interfaces;
 using DailyScrumBag.Interfaces.Extensions;
 using DailyScrumBag.Interfaces.Services;
-using DailyScrumBag.Repository.Models;
 using DailyScrumBag.Repository.Repositories;
 using DailyScrumBag.Services;
 using Microsoft.AspNetCore.Builder;
@@ -37,11 +32,17 @@ namespace DailyScrumBag
           
             services.AddDbContext<DSDBContext>(options =>
             {
-                var connectionString = _Configuration.GetConnectionString("WebConfiguration:DatabaseSetting:ConnectionString");
+                var connectionString = _Configuration.GetValue<string>("WebConfiguration:DatabaseSetting:ConnectionString");
                 options.UseSqlServer(connectionString);
 
             });
-         
+
+            services.AddDbContext<IdentityDataContext>(options =>
+            {
+                var connectionString = _Configuration.GetValue<string>("WebConfiguration:IdentitySettings:ConnectionString");
+                options.UseSqlServer(connectionString);
+            });
+
             //Erik - 3/15/2018 Can set default value with GetValue(Config:Value, defaultValue);
             services.AddTransient<IFeatureToggles, FeatureToggles>(x => new FeatureToggles()
             {
