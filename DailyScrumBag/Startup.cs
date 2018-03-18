@@ -1,8 +1,11 @@
 ﻿using System;
 using DailyScrumBag.Extensions;
 using DailyScrumBag.Interfaces.Extensions;
+using DailyScrumBag.Interfaces.Scheduling;
 using DailyScrumBag.Interfaces.Services;
 using DailyScrumBag.Repository.Repositories;
+using DailyScrumBag.Scheduler.Scheduling;
+using DailyScrumBag.Scheduler.Tasks;
 using DailyScrumBag.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,12 +27,12 @@ namespace DailyScrumBag
         }
 
         public IConfiguration Configuration { get; }
-        // Added this comment to check persistance
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IFormattingServices, FormattingServices>();
-          
+
             services.AddDbContext<DSDBContext>(options =>
             {
                 var connectionString = _Configuration.GetValue<string>("WebConfiguration:DatabaseSetting:ConnectionString");
@@ -51,6 +54,13 @@ namespace DailyScrumBag
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                .AddEntityFrameworkStores<IdentityDataContext>();
+            // Add scheduled tasks & scheduler
+            services.AddSingleton<IScheduledTask, QuoteOfTheDayTask>();
+            services.AddScheduler((sender, args) =>
+            {
+                Console.Write(args.Exception.Message);
+                args.SetObserved();
+            });
 
             services.AddMvc();
         }

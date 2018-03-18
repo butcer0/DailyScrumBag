@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyScrumBag", "DailyScrumBag\DailyScrumBag.csproj", "{0F2BF6C7-5435-4D1C-8611-B0462BDCB518}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyScrumBag.Repository", "DailyScrumBag.Repository\DailyScrumBag.Repository.csproj", "{4D7E0AA5-9E0A-4654-B67F-892AAE0DC2DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyScrumBag.Infrastructure", "DailyScrumBag.Infrastructure\DailyScrumBag.Infrastructure.csproj", "{6EC9E6F4-2099-41F6-AC0E-7E62937C71B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyScrumBag.Scheduler", "DailyScrumBag.Scheduler\DailyScrumBag.Scheduler.csproj", "{C2ACFE09-5C31-44C0-92A8-CD145487FF82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6EC9E6F4-2099-41F6-AC0E-7E62937C71B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC9E6F4-2099-41F6-AC0E-7E62937C71B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC9E6F4-2099-41F6-AC0E-7E62937C71B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2ACFE09-5C31-44C0-92A8-CD145487FF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2ACFE09-5C31-44C0-92A8-CD145487FF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2ACFE09-5C31-44C0-92A8-CD145487FF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2ACFE09-5C31-44C0-92A8-CD145487FF82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

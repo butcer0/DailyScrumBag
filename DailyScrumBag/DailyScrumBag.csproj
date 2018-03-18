@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DailyScrumBag.Interfaces\DailyScrumBag.Interfaces.csproj" />
     <ProjectReference Include="..\DailyScrumBag.Repository\DailyScrumBag.Repository.csproj" />
+    <ProjectReference Include="..\DailyScrumBag.Scheduler\DailyScrumBag.Scheduler.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,7 +7,8 @@
         Posted <span>@Format.AsReadableDate(Model.Posted)</span> by <span>@Model.Author</span>
     </div>
     <div class="content">
-        @Model.Body
+        @*@Model.Body*@
+        @Html.Raw(Model.Body)
     </div>
     <a href="#" class="show-comments">Show Comments</a>
     <div class="comments-container hide" data-post-key="@Model.Key">
