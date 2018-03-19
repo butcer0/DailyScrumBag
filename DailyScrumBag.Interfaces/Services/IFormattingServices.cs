@@ -12,5 +12,12 @@ namespace DailyScrumBag.Interfaces.Services
         /// <param name="date"></param>
         /// <returns>Readable DateTime</returns>
         string AsReadableDate(DateTime date);
+        /// <summary>
+        /// Truncates a String to Specific Length
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        string Chop(string s, int length);
     }
 }

@@ -1,18 +1,27 @@
-﻿@{
-    Layout = "_Layout";
-}
-@section header{
-    <h1>Welcome to Home</h1>
-    <a href="/tours.htm" title="Find your tour!"><h2>Find your tour</h2></a>
-}
-<article id="mainArticle">
-    <h1>Tour Spotlight</h1>
-    <p class="spotlight">This month's spotlight package is Cycle California. Whether you are looking for some serious downhill thrills to a relaxing ride along the coast, you'll find something to love in Cycle California.<br /> <span class="accent"><a href="/tours_cycle.htm" title="Cycle California">tour details</a></span></p>
-    <h1>Explorer's Podcast</h1>
-    <video controls poster="/images/podcast_poster.jpg" width="512" height="288" preload="none">
-        <source src="_video/podcast_teaser.mp4" type="video/mp4" />
-        <source src="_video/podcast_teaser.webm" type="video/webm" />
-        <source src="_video/podcast_teaser.theora.ogv" type="video/ogg" />
-    </video>
-    <p class="videoText">Join us each month as we publish a new Daily ScrumBag video podcast, with featured tours, customer photos, and some exctiing new features!<span class="accent"><a href="explorers/video.htm" title="Video Podcast">Watch the full video</a></span></p>
-</article>
+﻿@model IEnumerable<DailyScrumBag.Repository.Models.Post>
+@*Erik - 10/9/2017 Depricated - Moved to _ViewStart to allow Ajax partial page rendering*@
+@*@{
+        Layout = "_Layout";
+    }*@
+<div class="featured-slides-callout">
+    @await (Component.InvokeAsync<DailyScrumBag.ViewComponents.FeaturedSlideViewComponent>())
+</div>
+
+<aside id="recent-posts-2" class="widget widget_recent_entries">
+    <h1 class="widget-title">@Html.ActionLink("From The Blog", "", "Blog")</h1>
+    <a href="@Url.Action("", "Blog")" class="see-all-link">See all blog entries</a>
+    <ul class="recent_entries-list">
+        @if (Model != null)
+        {
+            @foreach (var post in Model)
+            {
+                @Html.Partial("_RecentPost", post)
+            }
+
+        }
+
+    </ul>
+    <a class="more-link" href="@Url.Action("", "Blog")">
+            <span class="meta-nav">←</span> Older posts
+        </a>
+</aside>

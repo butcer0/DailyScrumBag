@@ -5,14 +5,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DailyScrumBag.Models;
+using DailyScrumBag.Repository.Repositories;
 
 namespace DailyScrumBag.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DSDBContext _db;
+
+        public HomeController(DSDBContext db)
+        {
+            _db = db;
+        }
+
+        [Route("")]
+        [Route("Index")]
         public IActionResult Index()
         {
-            return View();
+            var pageSize = 7;
+
+            #region Retrieve Posts [Paginated]
+            var posts =
+                _db.Posts
+                    .OrderByDescending(x => x.Posted)
+                    .Take(pageSize)
+                    .ToArray();
+            #endregion
+
+            return View(posts);
         }
 
         #region Depricated - Unneeded

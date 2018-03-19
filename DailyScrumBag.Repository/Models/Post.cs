@@ -1,8 +1,6 @@
 ﻿using DailyScrumBag.Infrastructure.Constants;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace DailyScrumBag.Repository.Models
@@ -10,6 +8,7 @@ namespace DailyScrumBag.Repository.Models
     public class Post
     {
         public long Id { get; set; }
+        public Guid GuidId { get; set; }
         private string _key;
         public string Key
         {
@@ -40,6 +39,9 @@ namespace DailyScrumBag.Repository.Models
         [MinLength(100, ErrorMessage = "Blog posts must be at least 100 characters long")]
         public string Body { get; set; }
         public DateTime Posted { get; set; }
+        public DateTime LastFeaturedDate { get; set; }
+        public bool Featured { get; set; }
+        
 
     }
 }

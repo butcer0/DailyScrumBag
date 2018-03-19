@@ -1,0 +1,8 @@
+﻿@model IEnumerable<DailyScrumBag.Repository.Models.Post>
+
+<div class="featured-slides">
+    @foreach (var featuredSlide in Model)
+    {
+        @Html.Partial("_FeaturedSlide", featuredSlide)
+    }
+</div>

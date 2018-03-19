@@ -1,0 +1,21 @@
+﻿@inject DailyScrumBag.Interfaces.Services.IFormattingServices Format
+@model DailyScrumBag.Repository.Models.Post
+
+<li>
+    <div class="entry-intro">
+        <a href="@Url.Action("Post", "Blog", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })" class="entries-image-holder">
+            <div class="entry-image" style="background-image: url('/images/@(Model.Key)');"></div>
+        </a>
+        <h2><a href="@Url.Action("Post", "Blog", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })">@Model.Title</a></h2>
+        <a class="comments-link" href="@Url.Action("Post", "Blog", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })">
+            <span class="icon-hackaday-comment"></span>Comments
+        </a>
+        <p>
+            <span>By<<a href="@Url.Action("Post", "Blog", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })" title="Posts by @Model.Author" class="author url fn" rel="author">Al Williams</a></span>
+            | <span class="post-date">@Format.AsReadableDate(@Model.Posted)</span>
+        </p>
+        <p>
+            @Html.Raw(@Format.Chop(@Model.Body, 575)) <a href="@Url.Action("Post", "Blog", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })" class="read_more">&hellip;read more</a>
+    </p>
+</div>
+</li>

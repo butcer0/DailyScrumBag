@@ -24,5 +24,17 @@ namespace DailyScrumBag.Repository.Repositories
         {
             return Specials.ToArray();
         }
+
+        public IEnumerable<Post> GetFeaturedSlides()
+        {
+            IEnumerable<Post> featuredSlides = Posts.Where(c => c.Featured).OrderByDescending(d => d.LastFeaturedDate);
+            if (featuredSlides != null
+                && featuredSlides.Count() > 5)
+            {
+                featuredSlides = featuredSlides.Take(5);
+            }
+
+            return new List<Post>();
+        }
     }
 }
