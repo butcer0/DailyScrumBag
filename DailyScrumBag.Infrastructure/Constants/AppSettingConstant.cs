@@ -11,6 +11,21 @@ namespace DailyScrumBag.Infrastructure.Constants
         public const string CONNECTION_STRING = "ServiceConfiguration:Setting:DatabaseSetting:ConnectionString";
         #endregion
 
+        #region Admin Email Keys
+        public const string ADMIN_EMAIL_NO_QUEUED_EMAILS = "no-queued-emails-exist";
+        public const string ADMIN_EMAIL_GENERATED_AUTHOR = "Erik Butcher";
+        #endregion
+
+        #region Email Settings
+        public const string GMAIL_SMTP_HOST = "smtp.gmail.com";
+        public const string GMAIL_SMTP_USERNAME = "dailyscrumbag.noreply@gmail.com";
+        public const string GMAIL_SMTP_SENDEREMAIL = "dailyscrumbag.noreply@gmail.com";
+        public const string GMAIL_SMTP_PASSWORD = "4d18704da3";
+        public const int GMAIL_SMTP_TLS_PORT = 587;
+        public const int GMAIL_SMTP_SSL_PORT = 465;
+        public const bool GMAIL_SMTP_TLS_SSL_REQUIRED = true;
+        public const string GMAIL_SMTP_SENDERNAME = "The Daily ScrumBag";
+        #endregion
         //
         // Regular expressions
         //

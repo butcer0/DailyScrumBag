@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DailyScrumBag.Repository.Helpers;
 using DailyScrumBag.Repository.Models;
 using DailyScrumBag.Repository.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,12 @@ namespace DailyScrumBag.Controllers
         public BlogController(DSDBContext db)
         {
             _db = db;
+
+            //Erik - 3/19/2018 Pass db instance to be used in Repository
+            #region Set db in Repository
+            DSDBContextHelpers.SetDSDBContext(db); 
+            #endregion
+
         }
 
         #region Depricated - Introduced Ajax Pagination
@@ -53,7 +60,7 @@ namespace DailyScrumBag.Controllers
         [Route("")]
         public IActionResult Index(int page = 0)
         {
-            #region Caculate Pagination
+            #region Calculate Pagination
             var pageSize = 2;
             var totalPosts = _db.Posts.Count();
             var totalPages = totalPosts / pageSize;

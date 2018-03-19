@@ -3,6 +3,7 @@ using DailyScrumBag.Extensions;
 using DailyScrumBag.Interfaces.Extensions;
 using DailyScrumBag.Interfaces.Scheduling;
 using DailyScrumBag.Interfaces.Services;
+using DailyScrumBag.Repository.Helpers;
 using DailyScrumBag.Repository.Repositories;
 using DailyScrumBag.Scheduler.Scheduling;
 using DailyScrumBag.Scheduler.Tasks;
@@ -20,6 +21,7 @@ namespace DailyScrumBag
     public class Startup
     {
         private readonly IConfiguration _Configuration;
+        private DSDBContext _DSDBContext;
 
         public Startup(IConfiguration configuration)
         {
@@ -33,6 +35,12 @@ namespace DailyScrumBag
         {
             services.AddTransient<IFormattingServices, FormattingServices>();
 
+            //Erik - 3/19/2018 Move Cron Tasks to Web Application
+            //var dbConnectionString = _Configuration.GetValue<string>("WebConfiguration:IdentitySettings:ConnectionString");
+            //DbContextOptionsBuilder dbContextOptionsBuilder = new DbContextOptionsBuilder<DSDBContext>();
+            //dbContextOptionsBuilder.UseSqlServer(dbConnectionString);
+            //_DSDBContext =new DSDBContext(dbContextOptionsBuilder.Options);
+
             services.AddDbContext<DSDBContext>(options =>
             {
                 var connectionString = _Configuration.GetValue<string>("WebConfiguration:DatabaseSetting:ConnectionString");
@@ -40,6 +48,7 @@ namespace DailyScrumBag
 
             });
 
+          
             services.AddDbContext<IdentityDataContext>(options =>
             {
                 var connectionString = _Configuration.GetValue<string>("WebConfiguration:IdentitySettings:ConnectionString");
@@ -56,6 +65,7 @@ namespace DailyScrumBag
                .AddEntityFrameworkStores<IdentityDataContext>();
             // Add scheduled tasks & scheduler
             services.AddSingleton<IScheduledTask, QuoteOfTheDayTask>();
+            services.AddSingleton<IScheduledTask, EmailDailyTask>();
             services.AddScheduler((sender, args) =>
             {
                 Console.Write(args.Exception.Message);
@@ -63,6 +73,7 @@ namespace DailyScrumBag
             });
 
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,6 +117,8 @@ namespace DailyScrumBag
                 routes.MapRoute("Default",
                     "{controller=Home}/{action=Index}/{id:int?}");
             });
+
+           
 
             app.UseFileServer();
         }

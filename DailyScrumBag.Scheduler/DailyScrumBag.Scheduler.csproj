@@ -5,11 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DailyScrumBag.Infrastructure\DailyScrumBag.Infrastructure.csproj" />
-    <ProjectReference Include="..\DailyScrumBag.Interfaces\DailyScrumBag.Interfaces.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DailyScrumBag.Infrastructure\DailyScrumBag.Infrastructure.csproj" />
+    <ProjectReference Include="..\DailyScrumBag.Interfaces\DailyScrumBag.Interfaces.csproj" />
+    <ProjectReference Include="..\DailyScrumBag.Repository\DailyScrumBag.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.configuration.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
       <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.dependencyinjection.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
