@@ -8,8 +8,12 @@
     </div>
     <div class="content">
         @*@Model.Body*@
-        @Html.Raw(@Format.Chop(@Model.Body, 2000))  <a href="@Url.Action(" Post", "Blog" , new { year=Model.Posted.Year, month=Model.Posted.Month, key=Model.Key })" class="read_more">&hellip;read more</a>
-      
+        @Html.Raw(@Format.Chop(@Model.Body, 2000))
+        @if (Model.Body.Length > 2000)
+    {
+        <a href="@Url.Action("Post", "Blog" , new { year=Model.Posted.Year, month=Model.Posted.Month, key=Model.Key })" class="read_more">&hellip;read more</a>
+}
+
     </div>
     <a href="#" class="show-comments">Show Comments</a>
     <div class="comments-container hide" data-post-key="@Model.Key">
