@@ -1,0 +1,556 @@
+.category-major-tom .post-info,.category-major-tom .post-meta,.category-major-tom .wpcom-related-posts {
+ display:none
+}
+.site-main .widget_recent_entries li {
+ padding-bottom:1em
+}
+.staff-bio {
+ clear:both;
+ padding-left:160px;
+ margin-bottom:55px
+}
+.staff-bio img {
+ width:150px;
+ margin-left:-160px;
+ float:left
+}
+#text-7 {
+ background-color:#111;
+ text-align:center
+}
+#timerContainer {
+ display:none
+}
+#header #title-area {
+ background-image:url('https://hackadaycom.files.wordpress.com/2017/11/hackaday-naut.png')
+}
+img.size-full {
+ padding:0
+}
+blockquote.right {
+ max-width:200px;
+ margin-left:0;
+ float:right
+}
+blockquote.right p {
+ font-size:28px;
+ line-height:32px
+}
+.tag-test-tag h3,.tag-test-tag h4 {
+ display:inline;
+ float:left;
+ margin:0;
+ padding:0;
+ font-size:48px;
+ color:#fff;
+ margin-right:8px;
+ margin-bottom:8px
+}
+.widget_timer_widget {
+ background:#fff !important;
+ padding-bottom:1px !important;
+ background:#fff
+}
+.widget_timer_widget .widget-wrap {
+ background:#fff
+}
+.widget_timer_widget .widgettitle {
+ font-family:'EurostileLTPro-Bold';
+ font-weight:400;
+ font-size:13px;
+ text-align:center;
+ color:#878787;
+ background:#fff;
+ margin-bottom:0;
+ border-bottom:0;
+ padding-bottom:0;
+ padding-top:11px
+}
+.widget_timer_widget .countdowntimer-header {
+ padding-bottom:8px
+}
+.widget_timer_widget .countdowntimer-header strong.event {
+ text-transform:uppercase;
+ font-family:'EurostileLTPro-Bold';
+ font-weight:400;
+ color:#101010 !important
+}
+.widget_timer_widget .countdowntimer-content {
+ width:200px;
+ margin-left:3px;
+ margin-right:3px;
+ background:#111;
+ margin-bottom:2px;
+ padding:8px 47px
+}
+.widget_timer_widget .countdowntimer-tminus {
+ display:none
+}
+.widget_timer_widget .countdowntimer-content .value {
+ font-weight:700;
+ font-size:40px;
+ line-height:40px;
+ color:#f2f2f2
+}
+.widget_timer_widget .countdowntimer-content label {
+ font-size:9px;
+ color:#878787
+}
+.before-content .top-banner-link img {
+ border:1px solid #878787;
+ padding:0
+}
+.before-content .top-banner-link img:hover {
+ border:1px solid #00c100 !important
+}
+.attrib {
+ margin-right:8px
+}
+#text-6 {
+ padding-bottom:0
+}
+.widget_rss .widgettitle .rsswidget img {
+ display:none
+}
+.wpcom-related-posts {
+ clear:both
+}
+.store-stars {
+ display:none
+}
+.vertical-center {
+ vertical-align:middle
+}
+code {
+ background-color:#444;
+ padding:0 2px
+}
+#twitter-widget-0 {
+ float:left
+}
+#tableYellowTeal {
+ border:0;
+ border-collapse:collapse;
+ width:400px;
+ float:right
+}
+#tableYellowTeal th {
+ padding-right:12px;
+ height:56px;
+ padding-top:6px;
+ font-size:24px;
+ color:#DDD;
+ text-align:center;
+ vertical-align:top
+}
+#tableYellowTeal td {
+ padding-top:12px;
+ padding-bottom:12px;
+ padding-right:12px;
+ color:#1a1a1a;
+ font-size:24px;
+ text-align:center;
+ vertical-align:top;
+ font-weight:600;
+ line-height:100%
+}
+#tableYellowTeal th:nth-child(1),#tableYellowTeal td:nth-child(1) {
+ width:210px
+}
+#tableYellowTeal th:nth-child(2),#tableYellowTeal td:nth-child(2) {
+ width:190px
+}
+#tableYellowTeal td:nth-child(1) {
+ padding-left:28px;
+ background:url("https://hackadaycom.files.wordpress.com/2017/04/hackaday-yt-table-row-left1.png") repeat-y
+}
+#tableYellowTeal td:nth-child(2) {
+ padding-left:8px;
+ background:url("https://hackadaycom.files.wordpress.com/2017/04/hackaday-yt-table-row-right1.png") repeat-y
+}
+#tableYellowTeal th:nth-child(1) {
+ padding-left:8px;
+ text-align:left;
+ background:url("https://hackadaycom.files.wordpress.com/2017/04/hackaday-yt-table-header-left1.png") no-repeat
+}
+#tableYellowTeal th:nth-child(2) {
+ padding-left:0;
+ text-align:left;
+ background:url("https://hackadaycom.files.wordpress.com/2017/04/hackaday-yt-table-header-right1.png") no-repeat
+}
+.syntaxhighlighter a,.syntaxhighlighter div,.syntaxhighlighter code,.syntaxhighlighter table,.syntaxhighlighter table td,.syntaxhighlighter table tr,.syntaxhighlighter table tbody,.syntaxhighlighter table thead,.syntaxhighlighter table caption,.syntaxhighlighter textarea {
+ -moz-border-radius:0 !important;
+ -webkit-border-radius:0 0 0 0 !important;
+ background:none !important;
+ border:0 !important;
+ bottom:auto !important;
+ float:none !important;
+ height:auto !important;
+ left:auto !important;
+ line-height:1.1em !important;
+ margin:0!important;
+ outline:0 !important;
+ overflow:visible !important;
+ padding:0!important;
+ position:static !important;
+ right:auto !important;
+ text-align:left !important;
+ top:auto !important;
+ vertical-align:baseline !important;
+ width:auto !important;
+ box-sizing:content-box !important;
+ font-family:"Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+ font-weight:400 !important;
+ font-style:normal !important;
+ font-size:1em !important;
+ min-height:inherit !important;
+ min-height:auto !important
+}
+.syntaxhighlighter {
+ width:100% !important;
+ margin:1em 0!important;
+ position:relative !important;
+ overflow:auto !important;
+ font-size:1em !important
+}
+.syntaxhighlighter .container:before,.syntaxhighlighter .container:after {
+ content:none !important
+}
+.syntaxhighlighter.source {
+ overflow:hidden !important
+}
+.syntaxhighlighter .bold {
+ font-weight:700 !important
+}
+.syntaxhighlighter .italic {
+ font-style:italic !important
+}
+.syntaxhighlighter .line {
+ white-space:pre !important
+}
+.syntaxhighlighter table {
+ width:100% !important
+}
+.syntaxhighlighter table caption {
+ text-align:left !important;
+ padding:.5em 0 .5em 1em !important
+}
+.syntaxhighlighter table td.code {
+ width:100% !important
+}
+.syntaxhighlighter table td.code .container {
+ position:relative !important
+}
+.syntaxhighlighter table td.code .container textarea {
+ box-sizing:border-box !important;
+ position:absolute !important;
+ left:0 !important;
+ top:0 !important;
+ width:100% !important;
+ height:100% !important;
+ border:none !important;
+ background:#fff !important;
+ padding-left:1em !important;
+ overflow:hidden !important;
+ white-space:pre !important
+}
+.syntaxhighlighter table td.gutter .line {
+ text-align:right !important;
+ padding:0 .5em 0 1em !important
+}
+.syntaxhighlighter table td.code .line {
+ padding:0 1em!important
+}
+.syntaxhighlighter.nogutter td.code .container textarea,.syntaxhighlighter.nogutter td.code .line {
+ padding-left:0 !important
+}
+.syntaxhighlighter.show {
+ display:block !important
+}
+.syntaxhighlighter.collapsed table {
+ display:none !important
+}
+.syntaxhighlighter.collapsed .toolbar {
+ padding:.1em .8em 0!important;
+ font-size:1em !important;
+ position:static !important;
+ width:auto !important;
+ height:auto !important
+}
+.syntaxhighlighter.collapsed .toolbar span {
+ display:inline !important;
+ margin-right:1em !important
+}
+.syntaxhighlighter.collapsed .toolbar span a {
+ padding:0!important;
+ display:none !important
+}
+.syntaxhighlighter.collapsed .toolbar span a.expandSource {
+ display:inline !important
+}
+.syntaxhighlighter .toolbar {
+ position:absolute !important;
+ right:1px !important;
+ top:1px !important;
+ width:11px !important;
+ height:11px !important;
+ font-size:10px !important;
+ z-index:10 !important
+}
+.syntaxhighlighter .toolbar span.title {
+ display:inline !important
+}
+.syntaxhighlighter .toolbar a {
+ display:block !important;
+ text-align:center !important;
+ text-decoration:none !important;
+ padding-top:1px !important
+}
+.syntaxhighlighter .toolbar a.expandSource {
+ display:none !important
+}
+.syntaxhighlighter.ie {
+ font-size:.9em !important;
+ padding:1px 0!important
+}
+.syntaxhighlighter.ie .toolbar {
+ line-height:8px !important
+}
+.syntaxhighlighter.ie .toolbar a {
+ padding-top:0 !important
+}
+.syntaxhighlighter.printing .line.alt1 .content,.syntaxhighlighter.printing .line.alt2 .content,.syntaxhighlighter.printing .line.highlighted .number,.syntaxhighlighter.printing .line.highlighted.alt1 .content,.syntaxhighlighter.printing .line.highlighted.alt2 .content {
+ background:none !important
+}
+.syntaxhighlighter.printing .line .number {
+ color:#bbb !important
+}
+.syntaxhighlighter.printing .line .content {
+ color:#000 !important
+}
+.syntaxhighlighter.printing .toolbar {
+ display:none !important
+}
+.syntaxhighlighter.printing a {
+ text-decoration:none !important
+}
+.syntaxhighlighter.printing .plain,.syntaxhighlighter.printing .plain a {
+ color:#000 !important
+}
+.syntaxhighlighter.printing .comments,.syntaxhighlighter.printing .comments a {
+ color:#008200 !important
+}
+.syntaxhighlighter.printing .string,.syntaxhighlighter.printing .string a {
+ color:blue !important
+}
+.syntaxhighlighter.printing .keyword {
+ color:#069 !important;
+ font-weight:700 !important
+}
+.syntaxhighlighter.printing .preprocessor {
+ color:gray !important
+}
+.syntaxhighlighter.printing .variable {
+ color:#a70 !important
+}
+.syntaxhighlighter.printing .value {
+ color:#090 !important
+}
+.syntaxhighlighter.printing .functions {
+ color:#ff1493 !important
+}
+.syntaxhighlighter.printing .constants {
+ color:#06c !important
+}
+.syntaxhighlighter.printing .script {
+ font-weight:700 !important
+}
+.syntaxhighlighter.printing .color1,.syntaxhighlighter.printing .color1 a {
+ color:gray !important
+}
+.syntaxhighlighter.printing .color2,.syntaxhighlighter.printing .color2 a {
+ color:#ff1493 !important
+}
+.syntaxhighlighter.printing .color3,.syntaxhighlighter.printing .color3 a {
+ color:red !important
+}
+.syntaxhighlighter.printing .break,.syntaxhighlighter.printing .break a {
+ color:#000 !important
+}
+.syntaxhighlighter {
+ background-color:#1b2426 !important
+}
+.syntaxhighlighter .line.alt1 {
+ background-color:#1b2426 !important
+}
+.syntaxhighlighter .line.alt2 {
+ background-color:#1b2426 !important
+}
+.syntaxhighlighter .line.highlighted.alt1,.syntaxhighlighter .line.highlighted.alt2 {
+ background-color:#323E41 !important
+}
+.syntaxhighlighter .line.highlighted.number {
+ color:#b9bdb6 !important
+}
+.syntaxhighlighter table caption {
+ color:#b9bdb6 !important
+}
+.syntaxhighlighter table td.code .container textarea {
+ background:#1b2426;
+ color:#b9bdb6
+}
+.syntaxhighlighter .gutter {
+ color:#afafaf !important
+}
+.syntaxhighlighter .gutter .line {
+ border-right:3px solid #435a5f !important
+}
+.syntaxhighlighter .gutter .line.highlighted {
+ background-color:#435a5f !important;
+ color:#1b2426 !important
+}
+.syntaxhighlighter.printing .line .content {
+ border:none !important
+}
+.syntaxhighlighter.collapsed {
+ overflow:visible !important
+}
+.syntaxhighlighter.collapsed .toolbar {
+ color:#5ba1cf !important;
+ background:#000 !important;
+ border:1px solid #435a5f !important
+}
+.syntaxhighlighter.collapsed .toolbar a {
+ color:#5ba1cf !important
+}
+.syntaxhighlighter.collapsed .toolbar a:hover {
+ color:#5ce638 !important
+}
+.syntaxhighlighter .toolbar {
+ color:#fff !important;
+ background:#435a5f !important;
+ border:none !important
+}
+.syntaxhighlighter .toolbar a {
+ color:#fff !important
+}
+.syntaxhighlighter .toolbar a:hover {
+ color:#e0e8ff !important
+}
+.syntaxhighlighter .plain,.syntaxhighlighter .plain a {
+ color:#b9bdb6 !important
+}
+.syntaxhighlighter .comments,.syntaxhighlighter .comments a {
+ color:#878a85 !important
+}
+.syntaxhighlighter .string,.syntaxhighlighter .string a {
+ color:#5ce638 !important
+}
+.syntaxhighlighter .keyword {
+ font-weight:700 !important;
+ color:#5ba1cf !important
+}
+.syntaxhighlighter .preprocessor {
+ color:#435a5f !important
+}
+.syntaxhighlighter .variable {
+ color:#ffaa3e !important
+}
+.syntaxhighlighter .value {
+ color:#090 !important
+}
+.syntaxhighlighter .functions {
+ color:#ffaa3e !important
+}
+.syntaxhighlighter .constants {
+ color:#e0e8ff !important
+}
+.syntaxhighlighter .script {
+ font-weight:700 !important;
+ color:#5ba1cf !important;
+ background-color:none !important
+}
+.syntaxhighlighter .color1,.syntaxhighlighter .color1 a {
+ color:#e0e8ff !important
+}
+.syntaxhighlighter .color2,.syntaxhighlighter .color2 a {
+ color:#fff !important
+}
+.syntaxhighlighter .color3,.syntaxhighlighter .color3 a {
+ color:#ffaa3e !important
+}
+.banner-coincell {
+ position:relative;
+ width:600px;
+ background-position:-260px;
+ background-image:url(https://cdn.hackaday.io/images/1535851512506459283.png);
+ background-size:cover;
+ background-repeat:no-repeat
+}
+@media (min-width: 70.5em) {
+ .banner-coincell {
+  width:800px;
+  height:175px;
+  background-position:center
+ }
+}
+.banner-coincell-left {
+ padding:30px 240px 10px 30px
+}
+@media (min-width: 70.5em) {
+ .banner-coincell-left {
+  float:left;
+  width:390px;
+  padding:30px
+ }
+}
+.banner-coincell-right {
+ padding:10px 240px 30px 30px
+}
+@media (min-width: 70.5em) {
+ .banner-coincell-right {
+  float:right;
+  width:240px;
+  padding:45px 30px;
+  text-align:center
+ }
+}
+.banner-coincell-head {
+ font-size:28px;
+ color:#fff;
+ text-transform:uppercase;
+ font-weight:800;
+ font-family:'proxima-nova-n8', 'proxima-nova', sans-serif
+}
+.banner-coincell-hr {
+ background-color:#fff;
+ height:4px;
+ margin:10px 0
+}
+.banner-coincell-detail {
+ font-size:16px;
+ color:#fff
+}
+.banner-coincell-button {
+ display:block;
+ font-size:16px;
+ font-weight:600;
+ font-family:'proxima-nova-n8', 'proxima-nova', sans-serif;
+ line-height:16px;
+ color:#000;
+ padding:12px 20px;
+ margin-bottom:20px;
+ text-transform:uppercase;
+ text-decoration:none;
+ text-align:center;
+ background-color:#F3BF10
+}
+.banner-coincell-button:hover {
+ color:#000;
+ background-color:#fff
+}
+.banner-coincell-link {
+ font-size:16px;
+ color:#fff;
+ text-decoration:underline
+}

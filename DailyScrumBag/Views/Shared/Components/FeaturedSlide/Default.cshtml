@@ -1,8 +1,20 @@
-﻿@model IEnumerable<DailyScrumBag.Repository.Models.Post>
+﻿@inject DailyScrumBag.Interfaces.Services.IFormattingServices Format
+@model IEnumerable<DailyScrumBag.Repository.Models.Post>
 
 <div class="featured-slides">
     @foreach (var featuredSlide in Model)
     {
-        @Html.Partial("_FeaturedSlide", featuredSlide)
+        <div>
+            <div class="featured-slides-callout">
+                <a href=@Url.Action("Post", "Blog", new { year = featuredSlide.Posted.Year, month = featuredSlide.Posted.Month, key = featuredSlide.Key })>
+                    @*<div style="background-image: url('/images/@(Model.Key)')">
+                        </div>*@
+                    <h1 class="featured-slides-title">@featuredSlide.Title</h1>
+                    <p>@Html.Raw(@Format.Chop(@featuredSlide.Body, 300))</p>
+                </a>
+            </div>
+        </div>
+
+        @*@Html.Partial("_FeaturedSlide", featuredSlide)*@
     }
 </div>

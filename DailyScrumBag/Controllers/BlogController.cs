@@ -142,6 +142,7 @@ namespace DailyScrumBag.Controllers
             #region Overriding Author and Posted Values to disallow setting the properties manually upstream
             post.Author = User.Identity.Name;
             post.Posted = DateTime.Now;
+            post.GuidId = Guid.NewGuid();
             #endregion
 
             _db.Posts.Add(post);

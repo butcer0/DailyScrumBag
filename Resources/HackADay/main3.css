@@ -1076,21 +1076,6 @@ embed,iframe,object {
 .site-branding .site-description {
  display:none
 }
-    .site-branding a .logo-img {
-        width: 70%;
-        height: auto;
-        background-image: url(../s0.wp.com/wp-content/themes/vip/hackaday-2/img/logo.png);
-        display: block;
-        background-repeat: no-repeat;
-        vertical-align: middle;
-        clear: both;
-    }
-        .site-branding a .logo-img:after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
 .site-footer {
  display:block;
  overflow:hidden;
@@ -3494,8 +3479,4 @@ img.latex {
 }
 .simple-homepage {
  display:none
-}
-
-.hide {
-    display: none;
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Welcome to the Daily ScrumBag</title>
+
     <meta name="description" content="An Erik Butcher example of HTML5 and CSS3">
     <meta name="keywords" content="html5, css3, lynda, local storage, canvas, forms, semantics, web apps">
     <!--make sure mobile devices display the page at the proper scale	-->
@@ -10,7 +11,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="/css/main.css" rel="stylesheet" type="text/css" media="screen, projection">
+    <link href="~/css/main.css" rel="stylesheet" type="text/css" media="screen, projection">
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="screen, projection">
+    <link href="~/css/main2.css" rel="stylesheet" type="text/css" media="screen, projection">
     <script type="text/javascript" src="~/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
 </head>
@@ -18,54 +21,115 @@
     <div id="page" class="hfeed site">
         <div id="leaderboard">
             @*<script type="text/javascript">
-                    OA_show(467);
-                </script>*@
+                OA_show(467);
+            </script>*@
         </div>
-    </div>
-    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-    <header id="masthead" class="site-header" role="banner">
-        <div class="site-branding">
+
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        <header id="masthead" class="site-header" role="banner">
+            <div class="site-branding">
+                <a href="@Url.Action("", "Home")" rel="home" class="logo-img"/>
+                @*<section>
+                    <div>
+                        <a href="@Url.Action("", "Home")" rel="home"><img src="~/images/dailyscrumbagheaderlogowhite.png" alt="Logo" class="logo-img" ></a>
+                    </div>
+                </section>*@
+                <h1 class="site-title">
+                    
+                    <a href="@Url.Action("", "Home")" rel="home">The Daily ScrumBag</a>
+                </h1>
+            </div>
+
+            <button class="menu-toggle"><span class"icon icon-navbar-toggle">Primary Menu</span></button>
+
+            <nav id="site-navigation" class="main-navigation" role="navigation">
+                <div class="menu-main-container">
+                    <ul id="menu-main" class="menu">
+                        <li id="menu-item-90201" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90201"><a href="@Url.Action("", "Home")">Home</a></li>
+                        <li id="menu-item-136904" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-136904"><a href="@Url.Action("", "Blog")">Blog</a></li>
+                        <li id="menu-item-115276" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-115276"><a href="https://hackaday.io/?from=had&amp;utm_source=hackaday&amp;utm_medium=menu&amp;utm_campaign=blog">Hackaday.io</a></li>
+                        <li id="menu-item-97770" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-97770"><a href="https://store.hackaday.com/?from=had&amp;utm_source=hackaday&amp;utm_medium=menu&amp;utm_campaign=blog">Store</a></li>
+                        <li id="menu-item-136905" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-136905"><a title="Build Something that Matters" href="https://hackaday.io/prize">Hackaday Prize</a></li>
+                        <li id="menu-item-77211" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77211"><a href="submit-a-tip/index.html">Submit</a></li>
+                        <li id="menu-item-101802" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101802"><a href="about/index.html">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header><!-- #masthead -->
+        <section id="actionCall">
+            @if (IsSectionDefined("header"))
+        {
+            @*@RenderSection("header", false)*@
+    }
+    else
+    {
+        @*<h1>Explore our world your way</h1>*@
+}
+        </section>
+        <div id="content" class="site-content">
+
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main" role="main">
+                    @RenderBody()
+                </main><!-- #main -->
+            </div><!-- #primary -->
+            <div id="secondary" class="widget-area" role="complementary">
+                <div class="sidebar-ads-holder">
+                    <script type='text/javascript'>
+                        /* [id466] 300x250 */
+                        OA_show(466);
+                    </script>
+                </div>
+            </div><!-- #secondary -->
+        </div><!-- #content -->
+    </div><!-- #page -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+        <div id="footer" class="site-footer-container">
             <a href="@Url.Action("", "Home")" rel="home">
-                <img src="../s0.wp.com/wp-content/themes/vip/hackaday-2/img/logo.png" alt="Logo" class="logo-img">
+                <img src="~/images/DailyScrumBagHeaderLogo.png" alt="Logo" class="logo-img" />
             </a>
-            <h1 class="site-title">
-                <a href="@Url.Action("", "Home")" rel="home">The Daily ScrumBag</a>
-            </h1>
-        </div>
-
-        <button class="menu-toggle"><span class"icon icon-navbar-toggle">Primary Menu</span></button>
-
-        <nav id="site-navigation" class="main-navigation" role="navigation">
-            <div class="menu-main-container">
-                <ul id="menu-main" class="menu">
-                    <li id="menu-item-90201" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90201"><a href="@Url.Action("", "Home")">Home</a></li>
-                    <li id="menu-item-136904" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-136904"><a href="@Url.Action("", "Blog")">Blog</a></li>
-                    <li id="menu-item-115276" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-115276"><a href="https://hackaday.io/?from=had&amp;utm_source=hackaday&amp;utm_medium=menu&amp;utm_campaign=blog">Hackaday.io</a></li>
-                    <li id="menu-item-97770" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-97770"><a href="https://store.hackaday.com/?from=had&amp;utm_source=hackaday&amp;utm_medium=menu&amp;utm_campaign=blog">Store</a></li>
-                    <li id="menu-item-136905" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-136905"><a title="Build Something that Matters" href="https://hackaday.io/prize">Hackaday Prize</a></li>
-                    <li id="menu-item-77211" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77211"><a href="submit-a-tip/index.html">Submit</a></li>
-                    <li id="menu-item-101802" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101802"><a href="about/index.html">About</a></li>
+            <div class="menu-footer-menu-container">
+                <ul id="menu-footer-menu" class="menu">
+                    <li id="menu-item-141410" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-136915 current_page_item menu-item-141410"><a href="@Url.Action("", "Home")">Home</a></li>
+                    <li id="menu-item-141411" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-141411"><a href="@Url.Action("", "Blog")">Blog</a></li>
+                    <li id="menu-item-141412" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-141412"><a href="http://hackaday.io/">Hackaday.io</a></li>
+                    <li id="menu-item-141413" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-141413"><a href="http://store.hackaday.com/">Store</a></li>
+                    <li id="menu-item-141414" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-141414"><a title="Build Something that Matters" href="http://hackaday.io/prize">Hackaday Prize</a></li>
+                    <li id="menu-item-152823" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-152823"><a href="http://www.youtube.com/user/hackaday/videos">Video</a></li>
+                    <li id="menu-item-141415" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-141415"><a href="submit-a-tip/index.html">Submit a tip</a></li>
+                    <li id="menu-item-141417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-141417"><a href="https://hackadaycom.wordpress.com/about/">About</a></li>
+                    <li id="menu-item-141418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-141418"><a href="contact-us/index.html">Contact us</a></li>
                 </ul>
             </div>
-        </nav>
-    </header>
-    <section id="actionCall">
-        @if (IsSectionDefined("header"))
-            {
-        @*@RenderSection("header", false)*@
-            }
-            else
-            {
-        @*<h1>Explore our world your way</h1>*@
-            }
-    </section>
-    <div id="content" class="site-content">
-
-        <div id="primary" class="content-area">
-            <main id="main" class="site-main" role="main">
-                @RenderBody()
-            </main>
+            <aside id="hackadayfollowus-3" class="widget widget-follow-us">
+                <h1 class="footer-widget-title">Never miss a hack</h1>
+                <a href="https://www.facebook.com/pages/Hack-a-Day/136115233068429" target="_blank" class="icon-social icon-facebook">Follow on facebook</a>
+                <a href="https://plus.google.com/+hackaday/posts" target="_blank" class="icon-social icon-plusone">Follow on google+</a>
+                <a href="https://twitter.com/hackaday" target="_blank" class="icon-social icon-twitter">Follow on twitter</a>
+                <a href="https://www.youtube.com/user/hackaday" target="_blank" class="icon-social icon-youtube">Follow on youtube</a>
+                <a href="blog/feed/index.html" target="_blank" class="icon-social icon-rss">Follow on rss</a>
+                <a href="mailto:tips@hackaday.com" class="icon-social icon-contact">Contact us</a>
+            </aside><aside id="hackadaysubscribe-2" class="widget widget-had-subscribe">
+                <h1 class="footer-widget-title">Subscribe to Newsletter</h1>
+            @*Introduce -> role="subscribe"*@
+                <form action="http://hackaday.us9.list-manage.com/subscribe/post?u=dfadb71b0b15629cef5abf016&amp;id=f37880df9f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="subscribe-form validate" target="_blank" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                        <label for="mce-EMAIL">
+                            <input type="email" value="" name="EMAIL" class="subscribe-field" placeholder="Enter Email Address" id="mce-EMAIL" required>
+                        </label>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_dfadb71b0b15629cef5abf016_f37880df9f" tabindex="-1" value=""></div>
+                        <input type="submit" class="subscribe-submit" id="mc-embedded-subscribe" value="Subscribe">
+                    </div>
+                </form>
+            </aside>
+            <div class="site-info">
+                Copyright &copy; 2018            <span class="sep"> | </span>
+                <strong>DailyScrumBag, ScrumBag A Day, and the Skull and Wrenches Logo are Trademarks of TheDailyScrumBag.com</strong>
+                <br />Powered by <a href="https://vip.wordpress.com/?utm_source=vip_powered_wpcom&amp;utm_medium=web&amp;utm_campaign=VIP%20Footer%20Credit&amp;utm_term=hackaday.com" rel="generator nofollow" class="powered-by-wpcom">Erik Butcher</a>
+            </div><!-- .site-info -->
         </div>
-    </div>
+    </footer>
 </body>
 </html>

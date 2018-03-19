@@ -3,8 +3,8 @@
 <div>
     <div class="featured-slides-callout">
         <a href=@Url.Action("Post", "Blog", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })>
-            <div style="background-image: url('/images/@(Model.Key)')">
-            </div>
+            @*<div style="background-image: url('/images/@(Model.Key)')">
+            </div>*@
             <h1 class="featured-slides-title">@Model.Title</h1>
             <p>@Html.Raw(@Format.Chop(@Model.Body, 300))</p>
         </a>
