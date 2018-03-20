@@ -4,6 +4,7 @@ using DailyScrumBag.Interfaces.Scheduling;
 using DailyScrumBag.Repository.Helpers;
 using DailyScrumBag.Repository.Models;
 using DailyScrumBag.Repository.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,65 +16,83 @@ namespace DailyScrumBag.Scheduler.Tasks
     public class EmailDailyTask : IScheduledTask
     {
         public string Schedule => "* * * * *";
+        internal IServiceProvider _ServiceProvider;
 
+        public EmailDailyTask(IServiceProvider serviceProvider)
+        {
+            _ServiceProvider = serviceProvider;
+
+            #region Depricated - Disposes DBContext before can be used
+            //using (IServiceScope scope = serviceProvider.CreateScope())
+            //{
+            //    _DSDBContext = scope.ServiceProvider.GetRequiredService<DSDBContext>();
+            //}
+            #endregion
+        }
+        
+#pragma warning disable 1998
         public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
+            using (IServiceScope scope = _ServiceProvider.CreateScope())
+            {
+                var dSDBContext = scope.ServiceProvider.GetRequiredService<DSDBContext>();
 
-            DSDBContext db = DSDBContextHelpers.GetDSDBContext();
-            if(db == null)
-            {
-                return;
-            }
-            try
-            {
-                QueuedEmail emailToSend = db.GetNextQueuedEmail();
-                if (emailToSend != null)
+
+                if (dSDBContext == null)
                 {
-                    IEnumerable<Person> emailPersons = db.GetEmailPersons();
-                    foreach (var person in emailPersons)
-                    {
-                        EmailHelper.SendMailAsync(person.EmailAddress
-                            , emailToSend.Subject
-                            , emailToSend.Body
-                            , AppSettingConstant.GMAIL_SMTP_USERNAME
-                            , AppSettingConstant.GMAIL_SMTP_PASSWORD
-                            , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
-                            , AppSettingConstant.GMAIL_SMTP_SENDERNAME
-                            , AppSettingConstant.GMAIL_SMTP_HOST
-                            , AppSettingConstant.GMAIL_SMTP_TLS_PORT
-                            , isBodyHtml: true);
-                    }
-
+                    return;
                 }
-                else
+                try
                 {
-                    AdminEmail adminEmailToSend = db.GetAdminEmail(AppSettingConstant.ADMIN_EMAIL_NO_QUEUED_EMAILS);
-                    if (adminEmailToSend == null)
+                    QueuedEmail emailToSend = dSDBContext.GetNextQueuedEmail();
+                    if (emailToSend != null)
                     {
-                        adminEmailToSend = AdminEmailHelpers.GenerateDefaultNoQueuedEmailsAdminEmail(ref db);
-
-                        IEnumerable<Person> adminPersons = db.GetAdminPersons();
-                        foreach (var adminPerson in adminPersons)
+                        IEnumerable<Person> emailPersons = dSDBContext.GetEmailPersons();
+                        foreach (var person in emailPersons)
                         {
-                            EmailHelper.SendMailAsync(adminPerson.EmailAddress
-                              , emailToSend.Subject
-                              , emailToSend.Body
-                              , AppSettingConstant.GMAIL_SMTP_USERNAME
-                              , AppSettingConstant.GMAIL_SMTP_PASSWORD
-                              , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
-                              , AppSettingConstant.GMAIL_SMTP_SENDERNAME
-                              , AppSettingConstant.GMAIL_SMTP_HOST
-                              , AppSettingConstant.GMAIL_SMTP_TLS_PORT
-                              , isBodyHtml: true);
+                            EmailHelper.SendMailAsync(person.EmailAddress
+                                , emailToSend.Subject
+                                , emailToSend.Body
+                                , AppSettingConstant.GMAIL_SMTP_USERNAME
+                                , AppSettingConstant.GMAIL_SMTP_PASSWORD
+                                , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
+                                , AppSettingConstant.GMAIL_SMTP_SENDERNAME
+                                , AppSettingConstant.GMAIL_SMTP_HOST
+                                , AppSettingConstant.GMAIL_SMTP_TLS_PORT
+                                , isBodyHtml: true);
                         }
 
-
                     }
+                    else
+                    {
+                        AdminEmail adminEmailToSend = dSDBContext.GetAdminEmail(AppSettingConstant.ADMIN_EMAIL_NO_QUEUED_EMAILS);
+                        if (adminEmailToSend == null)
+                        {
+                            adminEmailToSend = AdminEmailHelpers.GenerateDefaultNoQueuedEmailsAdminEmail(ref dSDBContext);
+                        }
 
+                        if(adminEmailToSend != null)
+                        {
+                            IEnumerable<Person> adminPersons = dSDBContext.GetAdminPersons();
+                            foreach (var adminPerson in adminPersons)
+                            {
+                                EmailHelper.SendMailAsync(adminPerson.EmailAddress
+                                  , emailToSend.Subject
+                                  , emailToSend.Body
+                                  , AppSettingConstant.GMAIL_SMTP_USERNAME
+                                  , AppSettingConstant.GMAIL_SMTP_PASSWORD
+                                  , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
+                                  , AppSettingConstant.GMAIL_SMTP_SENDERNAME
+                                  , AppSettingConstant.GMAIL_SMTP_HOST
+                                  , AppSettingConstant.GMAIL_SMTP_TLS_PORT
+                                  , isBodyHtml: true);
+                            }
+                        }
+                    }
                 }
+                catch { }
             }
-            catch { }
-
-        }    
+        }
+#pragma warning restore 1998
     }
 }

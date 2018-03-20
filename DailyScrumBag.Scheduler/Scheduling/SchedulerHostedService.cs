@@ -4,10 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DailyScrumBag.Interfaces.Scheduling;
-using DailyScrumBag.Repository.Repositories;
 using DailyScrumBag.Scheduler.Cron;
 using DailyScrumBag.Scheduler.Services;
-using Microsoft.Extensions.Configuration;
 
 namespace DailyScrumBag.Scheduler.Scheduling
 {
@@ -16,7 +14,6 @@ namespace DailyScrumBag.Scheduler.Scheduling
         public event EventHandler<UnobservedTaskExceptionEventArgs> UnobservedTaskException;
 
         private readonly List<SchedulerTaskWrapper> _scheduledTasks = new List<SchedulerTaskWrapper>();
-        private DSDBContext _DSDB = null;
 
         public SchedulerHostedService(IEnumerable<IScheduledTask> scheduledTasks)
         {
@@ -32,24 +29,6 @@ namespace DailyScrumBag.Scheduler.Scheduling
                 });
             }
         }
-
-        //public SchedulerHostedService(IEnumerable<IScheduledTask> scheduledTasks, string connectionString)
-        //{
-        //    var referenceTime = DateTime.UtcNow;
-
-        //    foreach (var scheduledTask in scheduledTasks)
-        //    {
-        //        _scheduledTasks.Add(new SchedulerTaskWrapper
-        //        {
-        //            Schedule = CrontabSchedule.Parse(scheduledTask.Schedule),
-        //            Task = scheduledTask,
-        //            NextRunTime = referenceTime
-        //        });
-        //    }
-        //    Microsoft.EntityFrameworkCore.DbContextOptionsBuilder options = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder();
-        //    options.UseSqlServer(connectionString);
-
-        //}
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {

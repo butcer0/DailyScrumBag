@@ -21,7 +21,6 @@ namespace DailyScrumBag
     public class Startup
     {
         private readonly IConfiguration _Configuration;
-        private DSDBContext _DSDBContext;
 
         public Startup(IConfiguration configuration)
         {
@@ -35,12 +34,6 @@ namespace DailyScrumBag
         {
             services.AddTransient<IFormattingServices, FormattingServices>();
 
-            //Erik - 3/19/2018 Move Cron Tasks to Web Application
-            //var dbConnectionString = _Configuration.GetValue<string>("WebConfiguration:IdentitySettings:ConnectionString");
-            //DbContextOptionsBuilder dbContextOptionsBuilder = new DbContextOptionsBuilder<DSDBContext>();
-            //dbContextOptionsBuilder.UseSqlServer(dbConnectionString);
-            //_DSDBContext =new DSDBContext(dbContextOptionsBuilder.Options);
-
             services.AddDbContext<DSDBContext>(options =>
             {
                 var connectionString = _Configuration.GetValue<string>("WebConfiguration:DatabaseSetting:ConnectionString");
@@ -48,7 +41,8 @@ namespace DailyScrumBag
 
             });
 
-          
+            
+
             services.AddDbContext<IdentityDataContext>(options =>
             {
                 var connectionString = _Configuration.GetValue<string>("WebConfiguration:IdentitySettings:ConnectionString");

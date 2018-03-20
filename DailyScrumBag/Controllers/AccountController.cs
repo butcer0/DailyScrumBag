@@ -14,6 +14,7 @@ namespace DailyScrumBag.Controllers
     {
         private readonly SignInManager<IdentityUser> _signinManager;
         private readonly UserManager<IdentityUser> _userManager;
+      
 
         public AccountController(
                 UserManager<IdentityUser> userManager,
@@ -25,7 +26,8 @@ namespace DailyScrumBag.Controllers
         }
 
         public IActionResult Login()
-        {
+        { 
+
             return View(new LoginViewModel());
         }
 

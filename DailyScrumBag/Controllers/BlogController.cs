@@ -20,12 +20,6 @@ namespace DailyScrumBag.Controllers
         public BlogController(DSDBContext db)
         {
             _db = db;
-
-            //Erik - 3/19/2018 Pass db instance to be used in Repository
-            #region Set db in Repository
-            DSDBContextHelpers.SetDSDBContext(db); 
-            #endregion
-
         }
 
         #region Depricated - Introduced Ajax Pagination

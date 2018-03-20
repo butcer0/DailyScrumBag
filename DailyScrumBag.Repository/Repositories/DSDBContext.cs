@@ -84,7 +84,10 @@ namespace DailyScrumBag.Repository.Repositories
                     //Erik - 3/19/2018 Return null to trigger AdminEmail to send
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
             return emailToSend;
         }
 
