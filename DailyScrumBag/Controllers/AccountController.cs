@@ -23,6 +23,7 @@ namespace DailyScrumBag.Controllers
         {
             _userManager = userManager;
             _signinManager = signinManager;
+
         }
 
         public IActionResult Login()

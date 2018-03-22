@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DailyScrumBag.Infrastructure.Constants
@@ -27,6 +28,12 @@ namespace DailyScrumBag.Infrastructure.Constants
         public const string GMAIL_SMTP_SENDERNAME = "The Daily ScrumBag";
         public const bool GMAIL_SMTP_ENABLESSL = true;
         public const bool GMAIL_SMTP_ISBODYHTML = true;
+        #endregion
+
+        #region Email Templates
+        public const string SMTP_DAILY_EMAIL_TEMPLATE = @"\templates\emailtemplates\dailyemailtemplate.html";
+        public const string SMTP_ADMIN_EMAIL_TEMPLATE = @"\templates\emailtemplates\dailyemailtemplate.html";
+        public const string SMTP_ACTIVATE_DEVICE_EMAIL_TEMPLATE = @"\templates\emailtemplates\dailyemailtemplate.html";
         #endregion
         //
         // Regular expressions

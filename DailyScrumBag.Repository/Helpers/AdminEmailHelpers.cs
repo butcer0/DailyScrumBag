@@ -34,7 +34,7 @@ namespace DailyScrumBag.Repository.Helpers
                         CreateDate = DateTime.Now,
                         Subject = "No Queued Emails Exist",
                         Key = AppSettingConstant.ADMIN_EMAIL_NO_QUEUED_EMAILS,
-                        Body = "No Daily ScrumBag email sent today. Please check email queue and update as necessary. Thanks!"
+                        Body = "<p>No Daily ScrumBag email sent today. Please check email queue and update as necessary.</p><p>Thanks!</p>"
                     };
 
                     db.AdminEmails.Add(adminEmailToSend);

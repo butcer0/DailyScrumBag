@@ -17,7 +17,10 @@ namespace DailyScrumBag.Scheduler.Scheduling
 
         public SchedulerHostedService(IEnumerable<IScheduledTask> scheduledTasks)
         {
-            var referenceTime = DateTime.UtcNow;
+            var referenceTime = DateTime.Now;
+            #region Depricated - Use all local time
+            //var referenceTime = DateTime.UtcNow;
+            #endregion
 
             foreach (var scheduledTask in scheduledTasks)
             {
@@ -43,7 +46,10 @@ namespace DailyScrumBag.Scheduler.Scheduling
         private async Task ExecuteOnceAsync(CancellationToken cancellationToken)
         {
             var taskFactory = new TaskFactory(TaskScheduler.Current);
-            var referenceTime = DateTime.UtcNow;
+            var referenceTime = DateTime.Now;
+            #region Depricated - Use all local time
+            //var referenceTime = DateTime.UtcNow;
+            #endregion
 
             var tasksThatShouldRun = _scheduledTasks.Where(t => t.ShouldRun(referenceTime)).ToList();
 
@@ -91,7 +97,7 @@ namespace DailyScrumBag.Scheduler.Scheduling
 
             public bool ShouldRun(DateTime currentTime)
             {
-                return NextRunTime < currentTime && LastRunTime != NextRunTime;
+                return NextRunTime <= currentTime && LastRunTime != NextRunTime;
             }
         }
     }

@@ -41,8 +41,6 @@ namespace DailyScrumBag
 
             });
 
-            
-
             services.AddDbContext<IdentityDataContext>(options =>
             {
                 var connectionString = _Configuration.GetValue<string>("WebConfiguration:IdentitySettings:ConnectionString");
