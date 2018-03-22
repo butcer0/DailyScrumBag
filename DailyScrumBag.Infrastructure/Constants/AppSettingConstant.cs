@@ -25,6 +25,8 @@ namespace DailyScrumBag.Infrastructure.Constants
         public const int GMAIL_SMTP_SSL_PORT = 465;
         public const bool GMAIL_SMTP_TLS_SSL_REQUIRED = true;
         public const string GMAIL_SMTP_SENDERNAME = "The Daily ScrumBag";
+        public const bool GMAIL_SMTP_ENABLESSL = true;
+        public const bool GMAIL_SMTP_ISBODYHTML = true;
         #endregion
         //
         // Regular expressions

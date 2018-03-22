@@ -1,0 +1,10 @@
+aqua - 13BF99
+icon aqua:
+dark_aqua - 11BF9A
+medium_aqua - 40CDAD
+light_aqua - 71D9C2
+
+off_black - 01E1519
+grey_blue - 0D1F29
+
+hover light_aqua - 4BEDC9

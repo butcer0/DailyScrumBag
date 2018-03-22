@@ -113,6 +113,11 @@ namespace DailyScrumBag.Repository.Repositories
             return this.People.Where(c => c.InEmailList);
         }
 
+        public IEnumerable<string> GetEmailPersonsEmails()
+        {
+            return this.People.Where(c => c.InEmailList && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
+        }
+
         public IEnumerable<Person> GetSMSPersons()
         {
             return this.People.Where(c => c.InSMSList);
@@ -121,6 +126,11 @@ namespace DailyScrumBag.Repository.Repositories
         public IEnumerable<Person> GetAdminPersons()
         {
             return this.People.Where(c => c.IsAdmin);
+        }
+
+        public IEnumerable<string> GetAdminPersonsEmails()
+        {
+            return this.People.Where(c => c.IsAdmin && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
         }
     }
 }

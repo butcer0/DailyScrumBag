@@ -47,20 +47,36 @@ namespace DailyScrumBag.Scheduler.Tasks
                     QueuedEmail emailToSend = dSDBContext.GetNextQueuedEmail();
                     if (emailToSend != null)
                     {
-                        IEnumerable<Person> emailPersons = dSDBContext.GetEmailPersons();
-                        foreach (var person in emailPersons)
-                        {
-                            EmailHelper.SendMailAsync(person.EmailAddress
-                                , emailToSend.Subject
-                                , emailToSend.Body
-                                , AppSettingConstant.GMAIL_SMTP_USERNAME
-                                , AppSettingConstant.GMAIL_SMTP_PASSWORD
-                                , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
-                                , AppSettingConstant.GMAIL_SMTP_SENDERNAME
-                                , AppSettingConstant.GMAIL_SMTP_HOST
-                                , AppSettingConstant.GMAIL_SMTP_TLS_PORT
-                                , isBodyHtml: true);
-                        }
+                        IEnumerable<string> emailPersons = dSDBContext.GetEmailPersonsEmails();
+                        EmailHelper.SendMailAsync(emailPersons
+                            , emailToSend.Subject
+                            , emailToSend.Body
+                            , AppSettingConstant.GMAIL_SMTP_USERNAME
+                            , AppSettingConstant.GMAIL_SMTP_PASSWORD
+                            , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
+                            , AppSettingConstant.GMAIL_SMTP_SENDERNAME
+                            , AppSettingConstant.GMAIL_SMTP_HOST
+                            , AppSettingConstant.GMAIL_SMTP_TLS_PORT
+                            , enableSsl: AppSettingConstant.GMAIL_SMTP_ENABLESSL
+                            , isBodyHtml: AppSettingConstant.GMAIL_SMTP_ISBODYHTML);
+
+                        #region Depricated - Pass in List
+                        //IEnumerable<Person> emailPersons = dSDBContext.GetEmailPersons();
+                        //foreach (var person in emailPersons)
+                        //{
+                        //    EmailHelper.SendMailAsync(person.EmailAddress
+                        //        , emailToSend.Subject
+                        //        , emailToSend.Body
+                        //        , AppSettingConstant.GMAIL_SMTP_USERNAME
+                        //        , AppSettingConstant.GMAIL_SMTP_PASSWORD
+                        //        , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
+                        //        , AppSettingConstant.GMAIL_SMTP_SENDERNAME
+                        //        , AppSettingConstant.GMAIL_SMTP_HOST
+                        //        , AppSettingConstant.GMAIL_SMTP_TLS_PORT
+                        //        , enableSsl: AppSettingConstant.GMAIL_SMTP_ENABLESSL
+                        //        , isBodyHtml: AppSettingConstant.GMAIL_SMTP_ISBODYHTML);
+                        //}
+                        #endregion
 
                     }
                     else
@@ -73,24 +89,66 @@ namespace DailyScrumBag.Scheduler.Tasks
 
                         if(adminEmailToSend != null)
                         {
-                            IEnumerable<Person> adminPersons = dSDBContext.GetAdminPersons();
-                            foreach (var adminPerson in adminPersons)
+
+                            IEnumerable<string> adminPersons = dSDBContext.GetAdminPersonsEmails();
+                            if (adminPersons == null)
                             {
-                                EmailHelper.SendMailAsync(adminPerson.EmailAddress
-                                  , emailToSend.Subject
-                                  , emailToSend.Body
+                                adminPersons = new List<string>();
+                            }
+
+                            List<string> adminPersonsList = new List<string>(adminPersons);
+                            adminPersonsList.Add("butcer0@gmail.com");
+                         
+
+                            EmailHelper.SendMailAsync(adminPersonsList
+                                  , adminEmailToSend.Subject
+                                  , adminEmailToSend.Body
                                   , AppSettingConstant.GMAIL_SMTP_USERNAME
                                   , AppSettingConstant.GMAIL_SMTP_PASSWORD
                                   , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
                                   , AppSettingConstant.GMAIL_SMTP_SENDERNAME
                                   , AppSettingConstant.GMAIL_SMTP_HOST
                                   , AppSettingConstant.GMAIL_SMTP_TLS_PORT
-                                  , isBodyHtml: true);
-                            }
+                                  , enableSsl: AppSettingConstant.GMAIL_SMTP_ENABLESSL
+                                  , isBodyHtml: AppSettingConstant.GMAIL_SMTP_ISBODYHTML);
+
+
+                            #region Just Pass Email <string> List
+                            //IEnumerable<Person> adminPersons = dSDBContext.GetAdminPersons();
+                            //if (adminPersons == null)
+                            //{
+                            //    adminPersons = new List<Person>();
+                            //}
+                            //List<Person> adminPersonsList = new List<Person>(adminPersons);
+                            //if (adminPersonsList.Count == 0)
+                            //{
+                            //    adminPersonsList.Add(new Person
+                            //    {
+                            //        EmailAddress = "butcer0@gmail.com"
+                            //    });
+                            //}
+                            //foreach (var adminPerson in adminPersonsList)
+                            //{
+                            //    EmailHelper.SendMailAsync(adminPerson.EmailAddress
+                            //      , adminEmailToSend.Subject
+                            //      , adminEmailToSend.Body
+                            //      , AppSettingConstant.GMAIL_SMTP_USERNAME
+                            //      , AppSettingConstant.GMAIL_SMTP_PASSWORD
+                            //      , AppSettingConstant.GMAIL_SMTP_SENDEREMAIL
+                            //      , AppSettingConstant.GMAIL_SMTP_SENDERNAME
+                            //      , AppSettingConstant.GMAIL_SMTP_HOST
+                            //      , AppSettingConstant.GMAIL_SMTP_TLS_PORT
+                            //      , enableSsl: AppSettingConstant.GMAIL_SMTP_ENABLESSL
+                            //      , isBodyHtml: AppSettingConstant.GMAIL_SMTP_ISBODYHTML);
+                            //}
+                            #endregion
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex}");
+                }
             }
         }
 #pragma warning restore 1998
