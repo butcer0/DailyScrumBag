@@ -18,7 +18,7 @@ namespace DailyScrumBag.Scheduler.Tasks
 {
     public class EmailDailyTask : IScheduledTask
     {
-        public string Schedule => "0 7 * * *";
+        public string Schedule => "*/5 * * * *";
         #region Depricated - Use all local time
         //public string Schedule => $"{SchedulerHelpers.ConvertToUTCHour(16)} {SchedulerHelpers.ConvertToUTCMinute(02)} * * *";
         #endregion
@@ -73,7 +73,7 @@ namespace DailyScrumBag.Scheduler.Tasks
                         }
                         #endregion
 
-                            IEnumerable<string> emailPersons = dSDBContext.GetEmailPersonsEmails();
+                            IEnumerable<string> emailPersons = dSDBContext.GetEmailContactsEmail();
                         EmailHelper.SendDailyMailAsync( emailTemplate
                             , emailPersons
                             , emailToSend.Subject
@@ -126,7 +126,7 @@ namespace DailyScrumBag.Scheduler.Tasks
                         if(adminEmailToSend != null)
                         {
 
-                            IEnumerable<string> adminPersons = dSDBContext.GetAdminPersonsEmails();
+                            IEnumerable<string> adminPersons = dSDBContext.GetAdminContactsEmail();
                             if (adminPersons == null)
                             {
                                 adminPersons = new List<string>();

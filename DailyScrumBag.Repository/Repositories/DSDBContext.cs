@@ -15,7 +15,7 @@ namespace DailyScrumBag.Repository.Repositories
         public DbSet<Special> Specials { get; set; }
         public DbSet<QueuedEmail> QueuedEmails { get; set; }
         public DbSet<AdminEmail> AdminEmails { get; set; }
-        public DbSet<Person> People { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         public DSDBContext(DbContextOptions<DSDBContext> options)
             :base(options)
@@ -108,29 +108,29 @@ namespace DailyScrumBag.Repository.Repositories
             return emailToSend;
         }
 
-        public IEnumerable<Person> GetEmailPersons()
+        public IEnumerable<Contact> GetEmailContacts()
         {
-            return this.People.Where(c => c.InEmailList);
+            return this.Contacts.Where(c => c.InEmailList);
         }
 
-        public IEnumerable<string> GetEmailPersonsEmails()
+        public IEnumerable<string> GetEmailContactsEmail()
         {
-            return this.People.Where(c => c.InEmailList && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
+            return this.Contacts.Where(c => c.InEmailList && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
         }
 
-        public IEnumerable<Person> GetSMSPersons()
+        public IEnumerable<Contact> GetSMSContacts()
         {
-            return this.People.Where(c => c.InSMSList);
+            return this.Contacts.Where(c => c.InSMSList);
         }
 
-        public IEnumerable<Person> GetAdminPersons()
+        public IEnumerable<Contact> GetAdminContacts()
         {
-            return this.People.Where(c => c.IsAdmin);
+            return this.Contacts.Where(c => c.IsAdmin);
         }
 
-        public IEnumerable<string> GetAdminPersonsEmails()
+        public IEnumerable<string> GetAdminContactsEmail()
         {
-            return this.People.Where(c => c.IsAdmin && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
+            return this.Contacts.Where(c => c.IsAdmin && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
         }
     }
 }
