@@ -18,7 +18,7 @@ namespace DailyScrumBag.Scheduler.Tasks
 {
     public class EmailDailyTask : IScheduledTask
     {
-        public string Schedule => "*/5 * * * *";
+        public string Schedule => "* */6 * * *";
         #region Depricated - Use all local time
         //public string Schedule => $"{SchedulerHelpers.ConvertToUTCHour(16)} {SchedulerHelpers.ConvertToUTCMinute(02)} * * *";
         #endregion
@@ -42,11 +42,11 @@ namespace DailyScrumBag.Scheduler.Tasks
         public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             //Erik - 3/22/2018 Prevent Mailing Everyone on First Run
-            if(firstRun)
-            {
-                firstRun = false;
-                return;
-            }
+            //if(firstRun)
+            //{
+            //    firstRun = false;
+            //    return;
+            //}
 
             using (IServiceScope scope = _ServiceProvider.CreateScope())
             {

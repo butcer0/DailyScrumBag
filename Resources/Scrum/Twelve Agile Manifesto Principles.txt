@@ -8,7 +8,7 @@ The twelve principles of agile development include:
     Accommodate changing requirements throughout the development process – The ability to avoid delays when a requirement or feature request changes.
     Frequent delivery of working software – Scrum accommodates this principle since the team operates in software sprints or iterations that ensure regular delivery of working software.
     Collaboration between the business stakeholders and developers throughout the project – Better decisions are made when the business and technical team are aligned.
-    Support, trust, and motivate the people involved – Motivated teams are more likely to deliver their best work than unhappy teams.
+    Collaboration between the business stakeholders and developers throughout the project – Better decisions are made when the business and technical team are aligned.
     Enable face-to-face interactions – Communication is more successful when development teams are co-located.
     Working software is the primary measure of progress – Delivering functional software to the customer is the ultimate factor that measures progress.
     Agile processes to support a consistent development pace – Teams establish a repeatable and maintainable speed at which they can deliver working software, and they repeat it with each release.
