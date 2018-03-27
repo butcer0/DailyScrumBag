@@ -1,8 +1,10 @@
 ﻿using DailyScrumBag.Infrastructure.Constants;
 using DailyScrumBag.Repository.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -78,6 +80,13 @@ namespace DailyScrumBag.Repository.Repositories
                             this.SaveChangesAsync();
                         }
                     }
+                    else
+                    {
+                        //Erik - 3/27/2018 No emails queue order set -> possibly send admin email
+                        emailToSend = this.QueuedEmails.Where(c => c.QueueOrder == -1).OrderByDescending(c => c.LastSent).FirstOrDefault();
+                        emailToSend.LastSent = DateTime.UtcNow;
+                        this.SaveChangesAsync();
+                    }
                 }
                 else
                 {
@@ -131,6 +140,52 @@ namespace DailyScrumBag.Repository.Repositories
         public IEnumerable<string> GetAdminContactsEmail()
         {
             return this.Contacts.Where(c => c.IsAdmin && (!string.IsNullOrEmpty(c.EmailAddress))).Select(c => c.EmailAddress);
+        }
+
+        public void VerifyPreparedQueuedMessagesIntroduced(ref IHostingEnvironment env)
+        {
+            if(this.QueuedEmails.Any())
+            {
+                //Erik - 3/27/2018 Queued emails found
+                return;
+            }
+
+            try
+            {
+                var webRoot = env.WebRootPath;
+
+
+                var pathToDailyEmailFile = webRoot + AppSettingConstant.SMTP_PREPARED_EMAILS_PATH;
+
+                string[] allfiles = Directory.GetFiles(pathToDailyEmailFile, "*.html", SearchOption.AllDirectories);
+
+                for (int ii = 0; ii < allfiles.Length; ii++)
+                {
+                    using (StreamReader SourceReader = System.IO.File.OpenText(allfiles[ii]))
+                    {
+                        var preparedEmail = SourceReader.ReadToEnd();
+
+                        this.QueuedEmails.Add(new QueuedEmail
+                        {
+                            GuidId = Guid.NewGuid(),
+                            Subject = "Daily ScrumBag",
+                            Author = "Scrum Manifesto",
+                            Body = preparedEmail,
+                            CreateDate = DateTime.UtcNow
+                        });
+
+                    }
+                }
+
+                this.SaveChangesAsync();
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error occured in VerifyPreparedQueuedMessagesIntroduced: " + ex.Message);
+            }
+            
         }
     }
 }

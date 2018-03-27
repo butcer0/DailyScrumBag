@@ -30,6 +30,17 @@ namespace DailyScrumBag.Scheduler.Tasks
         {
             _ServiceProvider = serviceProvider;
             _Env = env;
+
+            #region Verify Prepared Queued Emails Injected
+            using (IServiceScope scope = _ServiceProvider.CreateScope())
+            {
+                var dSDBContext = scope.ServiceProvider.GetRequiredService<DSDBContext>();
+                dSDBContext.VerifyPreparedQueuedMessagesIntroduced(ref env);
+
+            }
+            #endregion
+
+
             #region Depricated - Disposes DBContext before can be used
             //using (IServiceScope scope = serviceProvider.CreateScope())
             //{
@@ -37,7 +48,7 @@ namespace DailyScrumBag.Scheduler.Tasks
             //}
             #endregion
         }
-        
+
 #pragma warning disable 1998
         public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
@@ -66,16 +77,26 @@ namespace DailyScrumBag.Scheduler.Tasks
                     {
                         #region Get Daily Email Template
                         var pathToDailyEmailFile = webRoot + AppSettingConstant.SMTP_DAILY_EMAIL_TEMPLATE;
-                       
+
                         using (StreamReader SourceReader = System.IO.File.OpenText(pathToDailyEmailFile))
                         {
                             emailTemplate = SourceReader.ReadToEnd();
                         }
                         #endregion
 
-                            IEnumerable<string> emailPersons = dSDBContext.GetEmailContactsEmail();
-                        EmailHelper.SendDailyMailAsync( emailTemplate
-                            , emailPersons
+                        IEnumerable<string> emailPersons = dSDBContext.GetEmailContactsEmail();
+#if DEBUG
+                        if (emailPersons == null)
+                        {
+                            emailPersons = new List<string>();
+                        }
+
+                        List<string> emailPersonsList = new List<string>(emailPersons);
+                        emailPersonsList.Add("butcer0@gmail.com");
+#endif
+
+                        EmailHelper.SendDailyMailAsync(emailTemplate
+                            , emailPersonsList
                             , emailToSend.Subject
                             , emailToSend.Body
                             , AppSettingConstant.GMAIL_SMTP_USERNAME
@@ -123,7 +144,7 @@ namespace DailyScrumBag.Scheduler.Tasks
                             adminEmailToSend = AdminEmailHelpers.GenerateDefaultNoQueuedEmailsAdminEmail(ref dSDBContext);
                         }
 
-                        if(adminEmailToSend != null)
+                        if (adminEmailToSend != null)
                         {
 
                             IEnumerable<string> adminPersons = dSDBContext.GetAdminContactsEmail();
@@ -134,9 +155,9 @@ namespace DailyScrumBag.Scheduler.Tasks
 
                             List<string> adminPersonsList = new List<string>(adminPersons);
                             adminPersonsList.Add("butcer0@gmail.com");
-                         
 
-                            EmailHelper.SendAdminMailAsync( emailTemplate
+
+                            EmailHelper.SendAdminMailAsync(emailTemplate
                                   , adminPersonsList
                                   , adminEmailToSend.Subject
                                   , adminEmailToSend.Body

@@ -35,6 +35,10 @@ namespace DailyScrumBag.Infrastructure.Constants
         public const string SMTP_ADMIN_EMAIL_TEMPLATE = @"\templates\emailtemplates\dailyemailtemplate.html";
         public const string SMTP_ACTIVATE_DEVICE_EMAIL_TEMPLATE = @"\templates\emailtemplates\dailyemailtemplate.html";
         #endregion
+
+        #region Prepared Emails
+        public const string SMTP_PREPARED_EMAILS_PATH = @"\preparedemails\scrummanifesto\";
+        #endregion
         //
         // Regular expressions
         //
